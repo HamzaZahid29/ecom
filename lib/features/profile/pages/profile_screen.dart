@@ -20,28 +20,33 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(18.0,),
-          child: Column(
-            children: [
-              Consumer<UserProfileProvider>(
-                builder: (context, provider, child) {
-                  final data = provider.userProfileModel;
-                  return BaseProfileInfoCard(data: data!);
-                },
-              ),
-              SizedBox(height: 20,),
-              ProfileScreenTile(HugeIcons.strokeRoundedUser, 'Profile Details', (){}),
-              ProfileScreenTile(HugeIcons.strokeRoundedSmartPhone02, 'View Device Info', (){
-                context.pushNamed(AppStaticRoutes.deviceInfo);
-              }),
-              ProfileScreenTile(HugeIcons.strokeRoundedShoppingCart02, 'Cart', (){
+          child: Consumer<UserProfileProvider>(builder: (context,provider, child){
+            final data = provider.userProfileModel;
 
-              }),
-              SizedBox(height: 20,),
-              AppElevatedButton(onTap: (){}, lable: 'Logout')
-            ],
-          ),
+            return Column(
+              children: [
+                (data== null) ? Center(child: Text('Login First'),) : BaseProfileInfoCard(data: data!),
+                SizedBox(height: 20,),
+                ProfileScreenTile(HugeIcons.strokeRoundedUser, 'Profile Details', (){}),
+                ProfileScreenTile(HugeIcons.strokeRoundedSmartPhone02, 'View Device Info', (){
+                  context.pushNamed(AppStaticRoutes.deviceInfo);
+                }),
+                ProfileScreenTile(HugeIcons.strokeRoundedShoppingCart02, 'Cart', (){
+
+                }),
+                SizedBox(height: 20,),
+                AppElevatedButton(onTap: () async{
+                  await provider.logout().then((_){
+                    context.pop();
+                  });
+                }, lable: 'Logout')
+              ],
+            );
+          }),
         ),
       ),
     );
   }
 }
+
+
