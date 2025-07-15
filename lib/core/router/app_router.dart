@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:ecom/core/router/app_static_routes.dart';
+import 'package:ecom/features/favourites/pages/favourites_page.dart';
 import 'package:ecom/features/listings/pages/listings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +47,11 @@ final GoRouter appRoutes = GoRouter(
       path: AppStaticRoutes.deviceInfo,
       name: AppStaticRoutes.deviceInfo,
       pageBuilder: (context, state) => MaterialPage(child: DeviceInfoScreen()),
+    ),
+    GoRoute(
+      path: AppStaticRoutes.favouritesScreen,
+      name: AppStaticRoutes.favouritesScreen,
+      pageBuilder: (context, state) => MaterialPage(child: FavouritesPage()),
     ),
   ],
 );

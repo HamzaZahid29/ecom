@@ -19,34 +19,51 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(title: Text('User Profile')),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(18.0,),
-          child: Consumer<UserProfileProvider>(builder: (context,provider, child){
-            final data = provider.userProfileModel;
+          padding: const EdgeInsets.all(18.0),
+          child: Consumer<UserProfileProvider>(
+            builder: (context, provider, child) {
+              final data = provider.userProfileModel;
 
-            return Column(
-              children: [
-                (data== null) ? Center(child: Text('Login First'),) : BaseProfileInfoCard(data: data!),
-                SizedBox(height: 20,),
-                ProfileScreenTile(HugeIcons.strokeRoundedUser, 'Profile Details', (){}),
-                ProfileScreenTile(HugeIcons.strokeRoundedSmartPhone02, 'View Device Info', (){
-                  context.pushNamed(AppStaticRoutes.deviceInfo);
-                }),
-                ProfileScreenTile(HugeIcons.strokeRoundedFavourite, 'Favourites', (){
-
-                }),
-                SizedBox(height: 20,),
-                AppElevatedButton(onTap: () async{
-                  await provider.logout().then((_){
-                    context.pop();
-                  });
-                }, lable: 'Logout')
-              ],
-            );
-          }),
+              return Column(
+                children: [
+                  (data == null)
+                      ? Center(child: Text('Login First'))
+                      : BaseProfileInfoCard(data: data!),
+                  SizedBox(height: 20),
+                  ProfileScreenTile(
+                    HugeIcons.strokeRoundedUser,
+                    'Profile Details',
+                    () {},
+                  ),
+                  ProfileScreenTile(
+                    HugeIcons.strokeRoundedSmartPhone02,
+                    'View Device Info',
+                    () {
+                      context.pushNamed(AppStaticRoutes.deviceInfo);
+                    },
+                  ),
+                  ProfileScreenTile(
+                    HugeIcons.strokeRoundedFavourite,
+                    'Favourites',
+                    () {
+                      context.pushNamed(AppStaticRoutes.favouritesScreen);
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  AppElevatedButton(
+                    onTap: () async {
+                      await provider.logout().then((_) {
+                        context.pop();
+                      });
+                    },
+                    lable: 'Logout',
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
-
-

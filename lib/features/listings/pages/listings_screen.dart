@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom/core/router/app_static_routes.dart';
 import 'package:ecom/core/theme/app_text_styles.dart';
 import 'package:ecom/core/widgets/app_star_rating_widget.dart';
+import 'package:ecom/features/favourites/providers/favourites_provider.dart';
 import 'package:ecom/features/listings/widgets/listing_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -45,7 +46,10 @@ class _ListingsScreenState extends State<ListingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Listings'),
+        title: Text('Products'),
+        leading: IconButton(onPressed: (){
+            context.pushNamed(AppStaticRoutes.favouritesScreen);
+        }, icon: Icon(Icons.favorite_border)),
         actions: [
           IconButton(
             onPressed: () {
@@ -55,8 +59,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
           ),
         ],
       ),
-      body: Consumer<ListingProvider>(
-        builder: (context, listingProvider, child) {
+      body: Consumer2<ListingProvider, FavouritesProvider>(
+        builder: (context, listingProvider, favouritesProvider, child) {
           if (listingProvider.isLoading && listingProvider.products.isEmpty) {
             return Center(child: CircularProgressIndicator());
           }
@@ -100,7 +104,16 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 }
 
                 final product = listingProvider.products[index];
-                return ListingCard(product: product, onTap: (){}, isLiked: false,);
+                return ListingCard(
+                  product: product,
+                  onTap: () {
+                  },
+                  onLikeToggle: (){
+                    favouritesProvider.likeProduct(product);
+
+                  },
+                  isLiked: favouritesProvider.isLiked(product),
+                );
               },
             ),
           );

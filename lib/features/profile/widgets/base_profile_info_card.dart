@@ -28,7 +28,7 @@ class BaseProfileInfoCard extends StatelessWidget {
                   spacing: 2,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(data?.username ?? '', style: AppTextStyles.heading2),
+                    Text(data?.username ?? '', style: AppTextStyles.heading3),
                     Text(
                       'Full Name: ${data?.firstName ?? ''} ${data?.lastName ?? ''}',
                       style: AppTextStyles.caption,
