@@ -23,7 +23,7 @@ This application uses dummyjson API for Authentication, Session Persistence, Pro
 1. **Clone the repository**
    ```bash
    git clone https://github.com/HamzaZahid29/ecom.git
-   cd immersive-commerce-app
+   cd ecom
    ```
 
 2. **Install Flutter dependencies**
@@ -109,3 +109,7 @@ lib/
 5. In the device info screen device base information is being brought through a method channel named as com.example.ecom/device_info
 6. same for android.
 7. The product detail screen is displayed when tapped on product took inspiration from Ali express
+
+##  Regards
+Hamza Zahid
+Thanks for considering my application. Let me know any improvements and better practices.
