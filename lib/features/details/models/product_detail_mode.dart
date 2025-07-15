@@ -65,9 +65,11 @@ class ProductDetail {
       warrantyInformation: map['warrantyInformation'] ?? '',
       shippingInformation: map['shippingInformation'] ?? '',
       availabilityStatus: map['availabilityStatus'] ?? '',
-      reviews: (map['reviews'] as List?)
-          ?.map((review) => ProductReview.fromMap(review))
-          .toList() ?? [],
+      reviews:
+          (map['reviews'] as List?)
+              ?.map((review) => ProductReview.fromMap(review))
+              .toList() ??
+          [],
       returnPolicy: map['returnPolicy'] ?? '',
       minimumOrderQuantity: map['minimumOrderQuantity'] ?? 0,
       meta: ProductMeta.fromMap(map['meta'] ?? {}),
@@ -124,11 +126,7 @@ class ProductDimensions {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'width': width,
-      'height': height,
-      'depth': depth,
-    };
+    return {'width': width, 'height': height, 'depth': depth};
   }
 }
 

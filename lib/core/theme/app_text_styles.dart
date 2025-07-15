@@ -3,45 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app_theme.dart';
 
-
 class AppTextStyles {
+  static TextStyle get xlNormal =>
+      GoogleFonts.poppins(fontSize: 32, fontWeight: FontWeight.normal);
+  static TextStyle get xlSuperBold =>
+      GoogleFonts.poppins(fontSize: 32, fontWeight: FontWeight.w900);
 
-  static TextStyle get xlNormal => GoogleFonts.poppins(
-    fontSize: 32,
-    fontWeight: FontWeight.normal,
-  );
-  static TextStyle get xlSuperBold => GoogleFonts.poppins(
-    fontSize: 32,
-    fontWeight: FontWeight.w900,
-  );
+  static TextStyle get heading1 =>
+      GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold);
+  static TextStyle get heading1Normal =>
+      GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.normal);
 
-  static TextStyle get heading1 => GoogleFonts.poppins(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get heading1Normal => GoogleFonts.poppins(
-    fontSize: 24,
-    fontWeight: FontWeight.normal,
-  );
+  static TextStyle get heading2 =>
+      GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600);
 
-  static TextStyle get heading2 => GoogleFonts.poppins(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-  );
+  static TextStyle get heading3 =>
+      GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500);
 
-  static TextStyle get heading3 => GoogleFonts.poppins(
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle get bodyText => GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-  );
-  static TextStyle get bodyTextBold => GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-  );
+  static TextStyle get bodyText =>
+      GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.normal);
+  static TextStyle get bodyTextBold =>
+      GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold);
 
   static TextStyle get caption => GoogleFonts.poppins(
     fontSize: 14,
@@ -80,15 +62,11 @@ class AppTextStyles {
     color: Colors.white,
   );
 
-  static TextStyle get appBarTitle => GoogleFonts.poppins(
-    fontSize: 20,
-    fontWeight: FontWeight.w700,
-  );
+  static TextStyle get appBarTitle =>
+      GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700);
 
-  static TextStyle get inputText => GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
+  static TextStyle get inputText =>
+      GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400);
 
   static TextStyle get inputHint => GoogleFonts.poppins(
     fontSize: 16,

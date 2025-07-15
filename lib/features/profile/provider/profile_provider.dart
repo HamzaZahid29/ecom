@@ -18,7 +18,8 @@ class UserProfileProvider extends ApiBaseProvider {
   UserProfileModel? get userProfileModel => _userProfileModel;
   String? get errorMessage => _errorMessage;
   bool get hasProfile => _userProfileModel != null;
-  bool get isCacheValid => _lastFetchTime != null &&
+  bool get isCacheValid =>
+      _lastFetchTime != null &&
       DateTime.now().difference(_lastFetchTime!) < _cacheTimeout;
 
   Future<UserProfileModel?> getProfileLazy({bool forceRefresh = false}) async {
@@ -92,6 +93,7 @@ class UserProfileProvider extends ApiBaseProvider {
     _errorMessage = null;
     notifyListeners();
   }
+
   bool get isCacheExpired => !isCacheValid;
 
   int get cacheAgeInMinutes {

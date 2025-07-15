@@ -1,10 +1,6 @@
-import 'package:ecom/core/theme/app_text_styles.dart';
-import 'package:ecom/core/theme/app_theme.dart';
-import 'package:ecom/core/widgets/app_star_rating_widget.dart';
 import 'package:ecom/features/details/widgets/description_section.dart';
 import 'package:ecom/features/details/widgets/product_base_info_section.dart';
 import 'package:ecom/features/details/widgets/product_details_section.dart';
-import 'package:ecom/features/details/widgets/review_row.dart';
 import 'package:ecom/features/details/widgets/reviews_section.dart';
 import 'package:ecom/features/listings/widgets/tags_section.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +22,7 @@ class ProductDetailPage extends StatelessWidget {
         builder: (context, provider, child) {
           if (provider.isLoading) {
             return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
+              body: Center(child: CircularProgressIndicator()),
             );
           }
 
@@ -118,9 +112,6 @@ class ProductDetailPage extends StatelessWidget {
           ),
         ],
       ),
-
     );
   }
-
-
 }

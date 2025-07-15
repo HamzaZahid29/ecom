@@ -31,17 +31,11 @@ class AppThemes {
     // Text Styles
     textTheme: GoogleFonts.poppinsTextTheme(
       ThemeData.light().textTheme,
-    ).apply(
-      bodyColor: lightAccentColor,
-      displayColor: lightAccentColor,
-    ),
+    ).apply(bodyColor: lightAccentColor, displayColor: lightAccentColor),
 
     primaryTextTheme: GoogleFonts.poppinsTextTheme(
       ThemeData.light().primaryTextTheme,
-    ).apply(
-      bodyColor: lightAccentColor,
-      displayColor: lightAccentColor,
-    ),
+    ).apply(bodyColor: lightAccentColor, displayColor: lightAccentColor),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -49,14 +43,20 @@ class AppThemes {
         backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-        textStyle: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+        textStyle: GoogleFonts.poppins(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
 
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: primaryColor,
-        textStyle: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+        textStyle: GoogleFonts.poppins(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
 
@@ -64,7 +64,10 @@ class AppThemes {
       style: OutlinedButton.styleFrom(
         foregroundColor: primaryColor,
         side: BorderSide(color: primaryColor),
-        textStyle: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+        textStyle: GoogleFonts.poppins(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
 
@@ -102,8 +105,6 @@ class AppThemes {
       backgroundColor: accentColor,
     ),
 
-    progressIndicatorTheme: ProgressIndicatorThemeData(
-      color: primaryColor,
-    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: primaryColor),
   );
 }

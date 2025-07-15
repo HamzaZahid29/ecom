@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,9 +22,9 @@ class AppElevatedButton extends StatelessWidget {
           Text(lable),
           svgPath == null
               ? Icon(
-            Icons.arrow_circle_right_outlined,
-            color: AppThemes.scaffoldBackgroundColor,
-          )
+                  Icons.arrow_circle_right_outlined,
+                  color: AppThemes.scaffoldBackgroundColor,
+                )
               : SvgPicture.asset(svgPath ?? ''),
         ],
       ),

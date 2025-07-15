@@ -11,7 +11,6 @@ import 'features/profile/provider/profile_provider.dart';
 import 'globals.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   final profileProvider = UserProfileProvider();
@@ -25,7 +24,6 @@ void main() async {
         ChangeNotifierProvider.value(value: profileProvider),
         ChangeNotifierProvider(create: (context) => ListingProvider()),
         ChangeNotifierProvider(create: (context) => FavouritesProvider()),
-
       ],
       child: MyApp(),
     ),

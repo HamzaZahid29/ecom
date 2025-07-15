@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom/core/router/app_static_routes.dart';
-import 'package:ecom/core/theme/app_text_styles.dart';
 import 'package:ecom/core/widgets/app_elevated_button.dart';
 import 'package:ecom/features/profile/provider/profile_provider.dart';
 import 'package:ecom/features/profile/widgets/base_profile_info_card.dart';

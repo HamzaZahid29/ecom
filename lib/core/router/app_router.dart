@@ -1,11 +1,9 @@
-import 'dart:developer';
 import 'package:ecom/core/router/app_static_routes.dart';
 import 'package:ecom/features/details/pages/product_detail_page.dart';
 import 'package:ecom/features/favourites/pages/favourites_page.dart';
 import 'package:ecom/features/listings/pages/listings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 import '../../features/auth/pages/login_screen.dart';
 import '../../features/device-info/pages/device_info_screen.dart';

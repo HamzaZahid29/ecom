@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:ecom/core/constants/app_constants.dart';
@@ -17,7 +16,7 @@ class AuthRepository {
     final result = await _apiClient.post('/auth/login', {
       "username": email,
       "password": password,
-      "expiresInMins" : AppConstants.tokenExpirationInMins
+      "expiresInMins": AppConstants.tokenExpirationInMins,
     });
 
     if (result is Success) {

@@ -1,4 +1,5 @@
 import 'package:ecom/core/providers/app_base_provider.dart';
+
 import '../../../core/network/api_result.dart';
 import '../models/product_detail_mode.dart';
 import '../repository/product_detail_repository.dart';
@@ -10,7 +11,8 @@ class ProductDetailProvider extends ApiBaseProvider {
     getProductDetail();
   }
 
-  ProductDetailRepository _productDetailRepository = ProductDetailRepository.instance;
+  ProductDetailRepository _productDetailRepository =
+      ProductDetailRepository.instance;
   ProductDetail? product;
 
   Future<void> getProductDetail() async {

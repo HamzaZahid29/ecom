@@ -1,6 +1,6 @@
 import 'package:ecom/core/providers/app_base_provider.dart';
-import 'package:ecom/features/listings/repository/listing_repository.dart';
 import 'package:ecom/features/listings/models/product_model.dart'; // Add this import
+import 'package:ecom/features/listings/repository/listing_repository.dart';
 
 import '../../../core/network/api_result.dart';
 

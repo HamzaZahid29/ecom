@@ -9,17 +9,17 @@ class UserProfileModel {
   String? image;
   String? username;
 
-  UserProfileModel(
-      {this.id,
-        this.firstName,
-        this.lastName,
-        this.age,
-        this.gender,
-        this.email,
-        this.birthDate,
-        this.image,
-        this.username
-      });
+  UserProfileModel({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.age,
+    this.gender,
+    this.email,
+    this.birthDate,
+    this.image,
+    this.username,
+  });
 
   UserProfileModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

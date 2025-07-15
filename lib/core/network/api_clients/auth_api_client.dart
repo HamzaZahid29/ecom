@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,11 +11,13 @@ class AuthApiClient {
   final Dio _dio;
 
   AuthApiClient()
-      : _dio = Dio(BaseOptions(
-    baseUrl: "${AppConstants.apiBaseUrl}",
-    connectTimeout: const Duration(seconds: 40),
-    receiveTimeout: const Duration(seconds: 50),
-  ));
+    : _dio = Dio(
+        BaseOptions(
+          baseUrl: "${AppConstants.apiBaseUrl}",
+          connectTimeout: const Duration(seconds: 40),
+          receiveTimeout: const Duration(seconds: 50),
+        ),
+      );
 
   /// Handle API Errors
   Failure _handleError(DioException error) {
@@ -28,7 +30,6 @@ class AuthApiClient {
         LogService.warning(responseData['message']);
         return Failure(responseData['message']); // ✅ Now it properly returns
       }
-
       // If responseData is not a Map, try extracting error text
       else if (responseData is String) {
         return Failure(responseData);
@@ -46,11 +47,15 @@ class AuthApiClient {
     }
   }
 
-  Future<ApiResult<dynamic>> get(String endpoint,
-      {Map<String, dynamic>? queryParams}) async {
+  Future<ApiResult<dynamic>> get(
+    String endpoint, {
+    Map<String, dynamic>? queryParams,
+  }) async {
     try {
-      Response response =
-      await _dio.get(endpoint, queryParameters: queryParams);
+      Response response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
       print('======> ${response.data['status']}');
       LogService.info("✅ Response: \n $endpoint ${response.data}");
 
@@ -61,14 +66,21 @@ class AuthApiClient {
   }
 
   /// **POST Request**
-  Future<ApiResult<dynamic>> post(String endpoint, dynamic data,
-      {Map<String, dynamic>? files}) async {
+  Future<ApiResult<dynamic>> post(
+    String endpoint,
+    dynamic data, {
+    Map<String, dynamic>? files,
+  }) async {
     try {
       dynamic requestData;
       Options options = Options();
       requestData = jsonEncode(data);
       options.contentType = Headers.jsonContentType;
-      Response response = await _dio.post(endpoint, data: requestData, options: options);
+      Response response = await _dio.post(
+        endpoint,
+        data: requestData,
+        options: options,
+      );
       LogService.info("✅ Response: \n $endpoint ${response.data}");
 
       return Success(response.data);

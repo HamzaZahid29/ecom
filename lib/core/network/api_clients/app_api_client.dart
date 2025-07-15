@@ -10,11 +10,13 @@ class AppApiClient {
   final Dio _dio;
 
   AppApiClient()
-      : _dio = Dio(BaseOptions(
-    baseUrl: "${AppConstants.apiBaseUrl}",
-    connectTimeout: const Duration(seconds: 40),
-    receiveTimeout: const Duration(seconds: 50),
-  )) {
+    : _dio = Dio(
+        BaseOptions(
+          baseUrl: "${AppConstants.apiBaseUrl}",
+          connectTimeout: const Duration(seconds: 40),
+          receiveTimeout: const Duration(seconds: 50),
+        ),
+      ) {
     _dio.interceptors.add(AuthInterceptor());
   }
 
@@ -29,7 +31,6 @@ class AppApiClient {
         LogService.warning(responseData['message']);
         return Failure(responseData['message']); // ✅ Now it properly returns
       }
-
       // If responseData is not a Map, try extracting error text
       else if (responseData is String) {
         return Failure(responseData);
@@ -47,11 +48,15 @@ class AppApiClient {
     }
   }
 
-  Future<ApiResult<dynamic>> get(String endpoint,
-      {Map<String, dynamic>? queryParams}) async {
+  Future<ApiResult<dynamic>> get(
+    String endpoint, {
+    Map<String, dynamic>? queryParams,
+  }) async {
     try {
-      Response response =
-      await _dio.get(endpoint, queryParameters: queryParams);
+      Response response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
       print('======> ${response.data['status']}');
       LogService.info("✅ Response: \n $endpoint ${response.data}");
 
@@ -78,7 +83,9 @@ class AppApiClient {
 class AuthInterceptor extends Interceptor {
   @override
   Future<void> onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     String? token = await SharedPrefsService.getAccessToken();
 
     if (token != null) {
@@ -90,7 +97,9 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     if (err.response?.statusCode == 401) {
       String? refreshToken = await SharedPrefsService.getRefreshToken();
       if (refreshToken != null) {
@@ -109,11 +118,13 @@ class AuthInterceptor extends Interceptor {
 
             if (newAccessToken != null && newRefreshToken != null) {
               await SharedPrefsService.saveTokens(
-                  accessToken: newAccessToken, refreshToken: newRefreshToken);
+                accessToken: newAccessToken,
+                refreshToken: newRefreshToken,
+              );
 
               LogService.info('New Tokens Saved Successfully');
               err.requestOptions.headers['Authorization'] =
-              'Bearer $newAccessToken';
+                  'Bearer $newAccessToken';
               final retryResponse = await Dio().fetch(err.requestOptions);
               return handler.resolve(retryResponse);
             }

@@ -2,12 +2,15 @@ import 'package:flutter/services.dart';
 
 import '../../network/api_result.dart';
 
-class MethodChannelClient{
-  static const MethodChannel _deviceInfoChannel = MethodChannel('com.example.ecom/device_info');
+class MethodChannelClient {
+  static const MethodChannel _deviceInfoChannel = MethodChannel(
+    'com.example.ecom/device_info',
+  );
 
   Future<ApiResult<dynamic>> getDeviceInfo() async {
     try {
-      final Map<Object?, Object?> result = await _deviceInfoChannel.invokeMethod('getDeviceInfo');
+      final Map<Object?, Object?> result = await _deviceInfoChannel
+          .invokeMethod('getDeviceInfo');
 
       final Map<String, dynamic> deviceInfo = {};
       result.forEach((key, value) {

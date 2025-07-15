@@ -17,7 +17,7 @@ class AppFormField extends StatelessWidget {
     this.onTap = null,
     required this.textEditingController,
     this.validator,
-    this.textInputType = TextInputType.text
+    this.textInputType = TextInputType.text,
   });
 
   @override

@@ -4,7 +4,6 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/app_constants.dart';
-import '../../../core/providers/password_visiblity_provider.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/widgets/app_elevated_button.dart';
 import '../../../core/widgets/app_form_field.dart';

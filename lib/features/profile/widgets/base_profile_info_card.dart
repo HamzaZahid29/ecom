@@ -40,11 +40,10 @@ class BaseProfileInfoCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Icon(HugeIcons.strokeRoundedArrowRight01)
+              Icon(HugeIcons.strokeRoundedArrowRight01),
             ],
           ),
         ),
-        
       ],
     );
   }

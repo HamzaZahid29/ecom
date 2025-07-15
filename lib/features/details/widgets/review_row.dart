@@ -15,8 +15,8 @@ class ReviewRow extends StatelessWidget {
         AppStarRatingWidget(rating: product.rating),
         const SizedBox(width: 8),
         Text(
-            '${product.rating} (${product.reviews.length} reviews)',
-            style: AppTextStyles.caption
+          '${product.rating} (${product.reviews.length} reviews)',
+          style: AppTextStyles.caption,
         ),
       ],
     );

@@ -9,16 +9,17 @@ class UserLoginModel {
   String? gender;
   String? image;
 
-  UserLoginModel(
-      {this.accessToken,
-        this.refreshToken,
-        this.id,
-        this.username,
-        this.email,
-        this.firstName,
-        this.lastName,
-        this.gender,
-        this.image});
+  UserLoginModel({
+    this.accessToken,
+    this.refreshToken,
+    this.id,
+    this.username,
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.gender,
+    this.image,
+  });
 
   UserLoginModel.fromJson(Map<String, dynamic> json) {
     accessToken = json['accessToken'];

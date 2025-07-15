@@ -37,21 +37,13 @@ class _ListingCardState extends State<ListingCard>
       vsync: this,
     );
 
-    _scaleAnimation = Tween<double>(
-      begin: 1.0,
-      end: 1.3,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.elasticOut,
-    ));
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.3).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
+    );
 
-    _rotationAnimation = Tween<double>(
-      begin: 0.0,
-      end: 0.1,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    _rotationAnimation = Tween<double>(begin: 0.0, end: 0.1).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
   }
 
   @override
@@ -128,9 +120,7 @@ class _ListingCardState extends State<ListingCard>
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     child: Icon(
-                       widget.isLiked
-                          ? Icons.favorite
-                          : Icons.favorite,
+                      widget.isLiked ? Icons.favorite : Icons.favorite,
                       color: widget.isLiked ? Colors.red : Colors.grey,
                       size: 28,
                     ),
@@ -140,11 +130,12 @@ class _ListingCardState extends State<ListingCard>
             },
           ),
         ),
-        onTap: (){
+        onTap: () {
           context.pushNamed(
             AppStaticRoutes.productDetail,
             pathParameters: {'productId': '${widget.product.id}'},
-          );        },
+          );
+        },
       ),
     );
   }

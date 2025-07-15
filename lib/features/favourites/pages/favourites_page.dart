@@ -13,19 +13,21 @@ class FavouritesPage extends StatelessWidget {
       appBar: AppBar(title: Text('Favourites')),
       body: Consumer<FavouritesProvider>(
         builder: (context, provider, child) {
-          return (provider.favouritesProductsList.length==0 ) ? Center(child: Text('No Favourites'),) : ListView.builder(
-            itemCount: provider.favouritesProductsList.length,
-            itemBuilder: (context, index) {
-              final product = provider.favouritesProductsList[index];
-              return ListingCard(
-                product: product,
-                onLikeToggle: () {
-                  provider.likeProduct(product);
-                },
-                isLiked: provider.isLiked(product),
-              );
-            },
-          );
+          return (provider.favouritesProductsList.length == 0)
+              ? Center(child: Text('No Favourites'))
+              : ListView.builder(
+                  itemCount: provider.favouritesProductsList.length,
+                  itemBuilder: (context, index) {
+                    final product = provider.favouritesProductsList[index];
+                    return ListingCard(
+                      product: product,
+                      onLikeToggle: () {
+                        provider.likeProduct(product);
+                      },
+                      isLiked: provider.isLiked(product),
+                    );
+                  },
+                );
         },
       ),
     );
