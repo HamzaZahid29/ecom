@@ -1,5 +1,5 @@
 class AppStaticRoutes{
-  static String loginScreen = '/';
+  static String loginScreen = '/login-screen';
   static String profileScreen = '/profile-screen';
-  static String listingsScreen = '/listings-screen';
+  static String listingsScreen = '/';
 }

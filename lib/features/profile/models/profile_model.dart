@@ -7,6 +7,7 @@ class UserProfileModel {
   String? email;
   String? birthDate;
   String? image;
+  String? username;
 
   UserProfileModel(
       {this.id,
@@ -16,7 +17,9 @@ class UserProfileModel {
         this.gender,
         this.email,
         this.birthDate,
-        this.image});
+        this.image,
+        this.username
+      });
 
   UserProfileModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -27,6 +30,7 @@ class UserProfileModel {
     email = json['email'];
     birthDate = json['birthDate'];
     image = json['image'];
+    username = json['username'];
   }
 
   Map<String, dynamic> toJson() {
@@ -39,6 +43,7 @@ class UserProfileModel {
     data['email'] = this.email;
     data['birthDate'] = this.birthDate;
     data['image'] = this.image;
+    data['username'] = this.username;
     return data;
   }
 }

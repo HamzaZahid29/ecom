@@ -8,12 +8,19 @@ import 'features/auth/providers/auth_provider.dart';
 import 'features/profile/provider/profile_provider.dart';
 import 'globals.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final profileProvider = UserProfileProvider();
+
+  await profileProvider.initializeIfAuthenticated();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
-        ChangeNotifierProvider(create: (context) => UserProfileProvider()),
+        ChangeNotifierProvider.value(value: profileProvider),
       ],
       child: MyApp(),
     ),

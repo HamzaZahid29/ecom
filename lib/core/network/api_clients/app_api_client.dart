@@ -96,26 +96,16 @@ class AuthInterceptor extends Interceptor {
       if (refreshToken != null) {
         try {
           final response = await Dio().post(
-            "${AppConstants.apiBaseUrl}api/auth/refresh",
+            "${AppConstants.apiBaseUrl}auth/refresh",
             data: {"refreshToken": refreshToken},
             options: Options(contentType: Headers.jsonContentType),
           );
 
           LogService.debug('Refreshing tokens $refreshToken \n $response');
 
-          if (response.statusCode == 200 &&
-              response.data["status"] == "success") {
-            final tokens = response.data["payload"]["tokens"] as List<dynamic>;
-            String? newAccessToken;
-            String? newRefreshToken;
-
-            for (var token in tokens) {
-              if (token.containsKey("accessToken")) {
-                newAccessToken = token["accessToken"];
-              } else if (token.containsKey("refreshToken")) {
-                newRefreshToken = token["refreshToken"];
-              }
-            }
+          if (response.statusCode == 200) {
+            final newAccessToken = response.data["accessToken"];
+            final newRefreshToken = response.data["refreshToken"];
 
             if (newAccessToken != null && newRefreshToken != null) {
               await SharedPrefsService.saveTokens(

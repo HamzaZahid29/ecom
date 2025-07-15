@@ -7,20 +7,15 @@ import 'package:provider/provider.dart';
 
 import '../../features/auth/pages/login_screen.dart';
 import '../../features/profile/pages/profile_screen.dart';
+import '../services/shared_prefrences_service.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final GoRouter appRoutes = GoRouter(
   navigatorKey: _rootNavigatorKey,
   redirect: (BuildContext context, GoRouterState state) async {
-    // final isAuthenticated = await SharedPrefsService.isAuthenticated();
-    final isAuthenticated = false;
+    final isAuthenticated = await SharedPrefsService.isAuthenticated();
     final protectedRoutes = [
-      // AppStaticRoutePaths.profilePage,
-      // AppStaticRoutePaths.messagesPage,
-      // AppStaticRoutePaths.messageDetailPage,
-      // AppStaticRoutePaths.theBookingsPage,
-      // AppStaticRoutePaths.confirmAndPay,
-      // AppStaticRoutePaths.favouritesPage
+      AppStaticRoutes.profileScreen,
     ];
     final currentPath = state.uri.path;
 
@@ -28,7 +23,7 @@ final GoRouter appRoutes = GoRouter(
       return AppStaticRoutes.loginScreen;
     }
 
-    return null; // no redirect
+    return null;
   },
   routes: [
     GoRoute(
