@@ -15,7 +15,7 @@ import '../respository/auth_repository.dart';
 class AuthProvider extends ApiBaseProvider {
   final AuthRepository _authRepository = AuthRepository.instance;
 
-  bool _isObsecured = false;
+  bool _isObsecured = true;
 
   bool get isObsecured => _isObsecured;
 
