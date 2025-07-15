@@ -5,6 +5,7 @@ import 'core/constants/app_constants.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/providers/auth_provider.dart';
+import 'features/listings/provider/listing_screen_provider.dart';
 import 'features/profile/provider/profile_provider.dart';
 import 'globals.dart';
 
@@ -21,6 +22,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider.value(value: profileProvider),
+        ChangeNotifierProvider(create: (context) => ListingProvider()),
+
       ],
       child: MyApp(),
     ),

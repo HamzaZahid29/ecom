@@ -1,22 +1,156 @@
-import 'package:ecom/core/constants/app_constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom/core/router/app_static_routes.dart';
+import 'package:ecom/core/theme/app_text_styles.dart';
+import 'package:ecom/core/widgets/app_star_rating_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 
-class ListingsScreen extends StatelessWidget {
-  const ListingsScreen({super.key});
+import '../provider/listing_screen_provider.dart';
+
+class ListingsScreen extends StatefulWidget {
+  @override
+  _ListingsScreenState createState() => _ListingsScreenState();
+}
+
+class _ListingsScreenState extends State<ListingsScreen> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent * 0.8) {
+      final provider = Provider.of<ListingProvider>(context, listen: false);
+      if (provider.hasMoreData && !provider.isLoadingMore) {
+        provider.loadMore();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${AppConstants.appName}'),
+        title: Text('Listings'),
         actions: [
-          IconButton(onPressed: () {
-            context.pushNamed(AppStaticRoutes.profileScreen);
-          }, icon: Icon(HugeIcons.strokeRoundedUser),),
+          IconButton(
+            onPressed: () {
+              context.pushNamed(AppStaticRoutes.profileScreen);
+            },
+            icon: Icon(HugeIcons.strokeRoundedUser),
+          ),
         ],
+      ),
+      body: Consumer<ListingProvider>(
+        builder: (context, listingProvider, child) {
+          if (listingProvider.isLoading && listingProvider.products.isEmpty) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (listingProvider.isError && listingProvider.products.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Error loading products'),
+                  ElevatedButton(
+                    onPressed: () => listingProvider.refresh(),
+                    child: Text('Retry'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          if (listingProvider.products.isEmpty) {
+            return Center(child: Text('No products found'));
+          }
+
+          return RefreshIndicator(
+            onRefresh: () => listingProvider.refresh(),
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount:
+                  listingProvider.products.length +
+                  (listingProvider.hasMoreData ? 1 : 0),
+              itemBuilder: (context, index) {
+                if (index == listingProvider.products.length) {
+                  return Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(
+                      child: listingProvider.isLoadingMore
+                          ? CircularProgressIndicator()
+                          : SizedBox.shrink(),
+                    ),
+                  );
+                }
+
+                final product = listingProvider.products[index];
+                return Card(
+                  margin: EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: CachedNetworkImage(
+                      imageUrl:  product.thumbnail,
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.cover,
+
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(product.title, style: AppTextStyles.caption),
+                        Text(
+                          'Category: ${product.category}',
+                          style: AppTextStyles.microDark,
+                        ),
+                        SizedBox(height: 3,),
+                        AppStarRatingWidget(rating: product.rating),
+                        SizedBox(height: 20),
+                        Row(
+                          spacing: 10,
+                          children: [
+                            Text(
+                              '${product.price.toStringAsFixed(2)}\$',
+                              style: AppTextStyles.captionPrimary,
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: product.availabilityStatus == 'In Stock'
+                                    ? Colors.green
+                                    : Colors.orange,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                product.availabilityStatus,
+                                style: AppTextStyles.micro.copyWith(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    trailing: IconButton(onPressed: (){}, icon: Icon(HugeIcons.strokeRoundedFavourite)),
+                  ),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
