@@ -7,6 +7,7 @@ class AppFormField extends StatelessWidget {
   VoidCallback? onTap;
   TextEditingController textEditingController;
   String? Function(String?)? validator;
+  TextInputType textInputType;
 
   AppFormField({
     super.key,
@@ -16,11 +17,13 @@ class AppFormField extends StatelessWidget {
     this.onTap = null,
     required this.textEditingController,
     this.validator,
+    this.textInputType = TextInputType.text
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: textInputType,
       validator: validator,
       controller: textEditingController,
       obscureText: isObsecured,

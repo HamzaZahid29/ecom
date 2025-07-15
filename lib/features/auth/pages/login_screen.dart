@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Form(
-            key:  _formKey,
+            key: _formKey,
             child: Column(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,28 +59,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 10),
                 AppFormField(
+                  textInputType: TextInputType.name,
                   title: 'Username',
                   icon: HugeIcons.strokeRoundedUser,
                   textEditingController: emailController,
                   validator: AppValidationService.validateRequired,
-
                 ),
-                // AppFormField(
-                //   textEditingController: passwordController,
-                //   title: 'Password',
-                //   isObsecured: authProvider.isObsecured,
-                //   icon: authProvider.isObsecured
-                //       ? Icons.visibility_off_outlined
-                //       : Icons.visibility_outlined,
-                //   validator: AppValidationService.validateRequired,
-                //   onTap: () {
-                //     authProvider.toggleObsecured();
-                //   },
-                // ),
-
                 Consumer<AuthProvider>(
                   builder: (context, authProvider, child) {
                     return AppFormField(
+                      textInputType: TextInputType.visiblePassword,
                       textEditingController: passwordController,
                       title: 'Password',
                       isObsecured: authProvider.isObsecured,
@@ -98,8 +86,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 Consumer<AuthProvider>(
                   builder: (context, authProvider, child) {
                     return AppElevatedButton(
-                      onTap: authProvider.isLoading ? null : () => _handleLogin(context),
-                      lable: authProvider.isLoading ? 'Logging in...' : 'Get Started',
+                      onTap: authProvider.isLoading
+                          ? null
+                          : () => _handleLogin(context),
+                      lable: authProvider.isLoading
+                          ? 'Logging in...'
+                          : 'Get Started',
                     );
                   },
                 ),
@@ -111,6 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
   Future<void> _handleLogin(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       await context.read<AuthProvider>().login(

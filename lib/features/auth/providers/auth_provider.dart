@@ -44,7 +44,7 @@ class AuthProvider extends ApiBaseProvider {
         );
         final userProfileProvider = context.read<UserProfileProvider>();
         await userProfileProvider.getUserProfile();
-        context.goNamed(AppStaticRoutes.profileScreen);
+        context.goNamed(AppStaticRoutes.listingsScreen);
       } else if (result is Failure) {
         AppSnackbarService.showSnackbar(result.error);
       }

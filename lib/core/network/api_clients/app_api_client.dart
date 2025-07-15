@@ -11,7 +11,7 @@ class AppApiClient {
 
   AppApiClient()
       : _dio = Dio(BaseOptions(
-    baseUrl: "${AppConstants.apiBaseUrl}api",
+    baseUrl: "${AppConstants.apiBaseUrl}",
     connectTimeout: const Duration(seconds: 40),
     receiveTimeout: const Duration(seconds: 50),
   )) {

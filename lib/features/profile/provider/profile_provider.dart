@@ -17,6 +17,7 @@ class UserProfileProvider extends ApiBaseProvider {
   Future<void> getUserProfile() async {
     setLoading(true);
     try {
+      print('Get User profle called');
       final result = await _profileRepository.getProfile();
       if (result is Success) {
         var data = UserProfileModel.fromJson(result.data);
