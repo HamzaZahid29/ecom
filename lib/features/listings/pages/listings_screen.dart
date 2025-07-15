@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom/core/router/app_static_routes.dart';
 import 'package:ecom/core/theme/app_text_styles.dart';
 import 'package:ecom/core/widgets/app_star_rating_widget.dart';
+import 'package:ecom/features/listings/widgets/listing_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -99,54 +100,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 }
 
                 final product = listingProvider.products[index];
-                return Card(
-                  margin: EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: CachedNetworkImage(
-                      imageUrl:  product.thumbnail,
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.cover,
-
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(product.title, style: AppTextStyles.caption),
-                        Text(
-                          'Category: ${product.category}',
-                          style: AppTextStyles.microDark,
-                        ),
-                        SizedBox(height: 3,),
-                        AppStarRatingWidget(rating: product.rating),
-                        SizedBox(height: 20),
-                        Row(
-                          spacing: 10,
-                          children: [
-                            Text(
-                              '${product.price.toStringAsFixed(2)}\$',
-                              style: AppTextStyles.captionPrimary,
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: product.availabilityStatus == 'In Stock'
-                                    ? Colors.green
-                                    : Colors.orange,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Text(
-                                product.availabilityStatus,
-                                style: AppTextStyles.micro.copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(HugeIcons.strokeRoundedFavourite)),
-                  ),
-                );
+                return ListingCard(product: product, onTap: (){}, isLiked: false,);
               },
             ),
           );

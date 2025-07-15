@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                 ProfileScreenTile(HugeIcons.strokeRoundedSmartPhone02, 'View Device Info', (){
                   context.pushNamed(AppStaticRoutes.deviceInfo);
                 }),
-                ProfileScreenTile(HugeIcons.strokeRoundedShoppingCart02, 'Cart', (){
+                ProfileScreenTile(HugeIcons.strokeRoundedFavourite, 'Favourites', (){
 
                 }),
                 SizedBox(height: 20,),
