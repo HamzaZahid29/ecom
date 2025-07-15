@@ -19,7 +19,6 @@ class FavouritesPage extends StatelessWidget {
               final product = provider.favouritesProductsList[index];
               return ListingCard(
                 product: product,
-                onTap: () {},
                 onLikeToggle: () {
                   provider.likeProduct(product);
                 },

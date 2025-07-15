@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:ecom/core/router/app_static_routes.dart';
+import 'package:ecom/features/details/pages/product_detail_page.dart';
 import 'package:ecom/features/favourites/pages/favourites_page.dart';
 import 'package:ecom/features/listings/pages/listings_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,7 @@ final GoRouter appRoutes = GoRouter(
   navigatorKey: _rootNavigatorKey,
   redirect: (BuildContext context, GoRouterState state) async {
     final isAuthenticated = await SharedPrefsService.isAuthenticated();
-    final protectedRoutes = [
-      AppStaticRoutes.profileScreen,
-    ];
+    final protectedRoutes = [AppStaticRoutes.profileScreen];
     final currentPath = state.uri.path;
 
     if (!isAuthenticated && protectedRoutes.contains(currentPath)) {
@@ -52,6 +51,14 @@ final GoRouter appRoutes = GoRouter(
       path: AppStaticRoutes.favouritesScreen,
       name: AppStaticRoutes.favouritesScreen,
       pageBuilder: (context, state) => MaterialPage(child: FavouritesPage()),
+    ),
+    GoRoute(
+      path: '${AppStaticRoutes.productDetail}/:productId',
+      name: AppStaticRoutes.productDetail,
+      pageBuilder: (context, state) {
+        final productId = state.pathParameters['productId']!;
+        return MaterialPage(child: ProductDetailPage(productId: productId));
+      },
     ),
   ],
 );

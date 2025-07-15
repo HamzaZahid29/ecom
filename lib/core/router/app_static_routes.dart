@@ -4,4 +4,5 @@ class AppStaticRoutes{
   static String listingsScreen = '/';
   static String deviceInfo = '/device-info';
   static String favouritesScreen = '/favourites-screen';
+  static String productDetail = '/product-detail-screen';
 }

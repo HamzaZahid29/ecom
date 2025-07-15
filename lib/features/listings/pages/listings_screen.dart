@@ -106,8 +106,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 final product = listingProvider.products[index];
                 return ListingCard(
                   product: product,
-                  onTap: () {
-                  },
+
                   onLikeToggle: (){
                     favouritesProvider.likeProduct(product);
 
