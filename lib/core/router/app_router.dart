@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/auth/pages/login_screen.dart';
+import '../../features/device-info/pages/device_info_screen.dart';
 import '../../features/profile/pages/profile_screen.dart';
 import '../services/shared_prefrences_service.dart';
 
@@ -40,6 +41,11 @@ final GoRouter appRoutes = GoRouter(
       path: AppStaticRoutes.listingsScreen,
       name: AppStaticRoutes.listingsScreen,
       pageBuilder: (context, state) => MaterialPage(child: ListingsScreen()),
+    ),
+    GoRoute(
+      path: AppStaticRoutes.deviceInfo,
+      name: AppStaticRoutes.deviceInfo,
+      pageBuilder: (context, state) => MaterialPage(child: DeviceInfoScreen()),
     ),
   ],
 );
