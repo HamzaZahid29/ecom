@@ -31,11 +31,6 @@ class ProfileScreen extends StatelessWidget {
                       : BaseProfileInfoCard(data: data!),
                   SizedBox(height: 20),
                   ProfileScreenTile(
-                    HugeIcons.strokeRoundedUser,
-                    'Profile Details',
-                    () {},
-                  ),
-                  ProfileScreenTile(
                     HugeIcons.strokeRoundedSmartPhone02,
                     'View Device Info',
                     () {
